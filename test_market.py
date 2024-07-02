@@ -2,6 +2,9 @@ import time
 import sys
 import pytest
 import os
+
+from selenium.common import TimeoutException
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'pages')))
 
 from pages.market_page import MarketPage
@@ -23,9 +26,19 @@ def test_market(driver):
     market_page.open("https://market.yandex.ru/")
     # time.sleep(10)
     # 3. Вводим в поиске 'ноутбуки HP'
-    market_page.search_product("ноутбуки HP")
+    try:
+        market_page.search_product("ноутбуки HP")
+    except TimeoutException:
+        print("Появилась капча. Подождите 10 секунд для ввода капчи вручную.")
+        time.sleep(10)
+        market_page.search_product("ноутбуки HP")
     # 4. Отсортировываем 'подешевле'
-    market_page.sort_by_price()
+    try:
+        market_page.sort_by_price()
+    except TimeoutException:
+        print("Появилась капча. Подождите 10 секунд для ввода капчи вручную.")
+        time.sleep(10)
+        market_page.sort_by_price()
     # 5. Ставим фильтр 'Оперативная память' - 8ГБ в чекбоксе
     market_page.select_memory_filter(driver)
     # 6. Отправляем товар в корзину
