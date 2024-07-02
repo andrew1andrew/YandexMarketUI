@@ -4,7 +4,6 @@
 ```bash
 git clone https://github.com/andrew1andrew/YandexMarketUI.git
 
-cd <укажите путь к проекту>
 ```
 
 \
@@ -13,6 +12,10 @@ cd <укажите путь к проекту>
 python -m venv venv
 
 venv\Scripts\activate
+
+deactivate # Выходим из виртуального окружения
+
+cd <укажите путь к проекту>
 
 pip install -r requirements.txt
 ```
