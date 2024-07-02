@@ -1,5 +1,6 @@
 import time
 import sys
+import pytest
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'pages')))
 
@@ -20,7 +21,7 @@ def test_market(driver):
     cart_page = CartPage(driver)
     # 2. Открываем страницу: https://market.yandex.ru/
     market_page.open("https://market.yandex.ru/")
-    time.sleep(10)
+    # time.sleep(10)
     # 3. Вводим в поиске 'ноутбуки HP'
     market_page.search_product("ноутбуки HP")
     # 4. Отсортировываем 'подешевле'
